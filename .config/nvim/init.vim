@@ -1,0 +1,137 @@
+"       _
+"__   _(_)_ __ ___  _ __ ___
+"\ \ / / | '_ ` _ \| '__/ __|
+" \ V /| | | | | | | | | (__
+"  \_/ |_|_| |_| |_|_|  \___|
+"
+
+let mapleader = ' '
+
+if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
+	echo "Downloading junegunn/vim-plug to manage plugins..."
+	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
+	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
+	autocmd VimEnter * PlugInstall
+endif
+
+syntax on
+filetype plugin on
+
+set tabstop=4
+set softtabstop=4
+
+set noerrorbells
+set smartindent
+set smarttab
+set rnu nu
+set nowrap
+set noswapfile
+set nobackup
+let &undodir = stdpath('data') . '/undodir'
+set undofile
+set incsearch
+set smartcase
+
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+call plug#begin(stdpath('data') . '/plugged')
+
+Plug 'morhetz/gruvbox'
+Plug 'preservim/nerdtree'
+Plug 'tomasiser/vim-code-dark'
+Plug 'jremmen/vim-ripgrep'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'vim-utils/vim-man'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'tpope/vim-sleuth'
+"Plug 'ycm-core/YouCompleteMe'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ap/vim-css-color'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+call plug#end()
+" Function for mapping everywhere
+function! MapBoth(keys, rhs)
+    execute 'nmap' a:keys a:rhs
+    execute 'imap' a:keys '<esc>' . a:rhs . 'a'
+endfunction
+
+" Fix for windows cmd weird colors
+if has('win32')
+    set termguicolors
+endif
+
+colorscheme codedark
+set background=dark
+
+let g:airline#extension#tabline#enabled = 1
+
+" Automatically deletes all trailing whitespace and newlines at end of file on save.
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritepre * %s/\n\+\%$//e
+
+" Basics
+nnoremap c "_c
+set mouse=a
+set go=a
+set nohlsearch
+
+" Nerd Tree
+map <leader>n :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
+
+" Save file as sudo on files that require root permission
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+" Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
+set splitbelow splitright
+
+" Disables automatic commenting on newline:
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Enable autocompletion:
+set wildmode=longest,list,full
+
+" Autoenter limelight mode when going into goyo mode & bindings
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+let g:limelight_conceal_ctermfg = 'DarkGrey'
+
+" Enable autocompletion:
+set wildmode=longest,list,full
+
+" Goyo & Limelight mode enter
+map <Leader>z :Goyo<CR>
+map <Leader>l :Limelight!!<CR>
+
+" Enter paste mode
+"nmap <F2> :set paste!<CR>
+"imap <F2> <esc>:set paste!<CR>a
+call MapBoth('<F2>', ':set paste!<CR>')
+
+" Shortcutting split navigation, saving a keypress:
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Markdown & MD Preview
+nmap <Leader>p <Plug>MarkdownPreviewToggle
+autocmd FileType markdown let b:sleuth_automatic=0
+autocmd FileType markdown set conceallevel=0
+autocmd FileType markdown normal zR
+
+" Resize splits
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 1/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 1/3)<CR>
+
+nnoremap <Leader><F3> :edit! +set\ dir=stdpath('config') init.vim<CR>

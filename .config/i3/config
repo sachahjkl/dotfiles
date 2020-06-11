@@ -1,0 +1,253 @@
+# Title: i3 Config File
+# Author: Sacha Froment
+
+# Variables Definitions
+set $mod Mod4
+set $i3lock i3lock -f -m -k -B=10 --indicator --datecolor=FFFFFFFF\
+	--timecolor=FFFFFFFF
+set $i3lock_fancy i3lock-fancy -p  -t 'Type password to unlock'
+set $nm_applet nm-applet
+set $font monospace 10
+set $border_width 5
+set $gaps_width 10
+set $term st
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+
+# Colors
+# TODO: add colors
+set $black #303030
+set $grey #696f89
+set $dark_grey #191919 
+set $blue #3475ed
+set $red #ed3437
+set $orange #ed4a34
+set $yellow #edde34
+set $purple #ed34c8
+set $white #ffffff
+set $transparent #000000CC
+
+# Font Settings
+font pango: $font
+
+# Keyboard Layout
+exec "setxkbmap -layout fr,us"
+# Switch layout with alt + shift
+exec "setxkbmap -option 'grp:shifts_toggle'" 
+
+# Media Keys
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym Shift+XF86MonBrightnessUp exec brightnessctl -inc 5 
+bindsym Shift+XF86MonBrightnessDown exec brightnessctl -dec 5
+bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/img/scrot/' 
+
+# Navigation Keys
+floating_modifier $mod
+bindsym $mod+e exec thunar
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+z split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+y layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+d exec --no-startup-id rofi -show combi -show-icons
+# Allows to open rofi just by pressing the left super key
+#bindcode --release 133 exec --no-startup-id rofi -show combi -show-icons -kb-cancel Super_L
+bindsym $mod+q focus parent
+#bindsym $mod+d focus child
+bindsym $mod+Shift+a kill
+bindsym $mod+Control+l exec --no-startup-id $i3lock
+bindsym $mod+t [instance="dropdown"] scratchpad show ; [instance="dropdown"] move position center
+bindsym $mod+b [instance="math"] scratchpad show ;[instance="math"] move position center
+bindsym Control+Shift+Escape exec --no-startup-id ksysguard
+
+# Special Windows
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] resize 625 400
+for_window [instance="dropdown"] move scratchpad
+exec --no-startup-id $term -n dropdown 
+
+for_window [instance="math"] floating enable
+for_window [instance="math"] resize 625 400
+for_window [instance="math"] move scratchpad
+exec --no-startup-id $term -n math -e bc
+
+for_window [window_role="About"] floating enable
+for_window [instance="floating"] floating enable
+for_window [class="ksysguard"] floating enable
+for_window [class="Volume Control"] floating enable
+for_window [class="Transmission"] floating enable
+
+# Workspace Accessor Variables 
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Workspace Keybindings
+bindsym $mod+ampersand workspace number $ws1
+bindsym $mod+eacute workspace number $ws2
+bindsym $mod+quotedbl workspace number $ws3
+bindsym $mod+apostrophe workspace number $ws4
+bindsym $mod+parenleft workspace number $ws5
+bindsym $mod+minus workspace number $ws6
+bindsym $mod+egrave workspace number $ws7
+bindsym $mod+underscore workspace number $ws8
+bindsym $mod+ccedilla workspace number $ws9
+bindsym $mod+agrave workspace number $ws10
+# move focused container to workspace
+bindsym $mod+Shift+ampersand move container to workspace number $ws1
+bindsym $mod+Shift+eacute move container to workspace number $ws2
+bindsym $mod+Shift+quotedbl move container to workspace number $ws3
+bindsym $mod+Shift+apostrophe move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+minus move container to workspace number $ws6
+bindsym $mod+Shift+egrave move container to workspace number $ws7
+bindsym $mod+Shift+underscore move container to workspace number $ws8
+bindsym $mod+Shift+ccedilla move container to workspace number $ws9
+bindsym $mod+Shift+agrave move container to workspace number $ws10
+
+# Reload, Exit, etc 
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Confirm Exit' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# Various Modes
+bindsym $mod+r mode "resize"
+mode "resize" {
+	bindsym h resize shrink width 5 px or 5 ppt
+	bindsym j resize grow height 5 px or 5 ppt
+	bindsym k resize shrink height 5 px or 5 ppt
+	bindsym l resize grow width 5 px or 5 ppt
+	# same bindings, but for the arrow keys
+	bindsym Left resize shrink width 5 px or 5 ppt
+	bindsym Down resize grow height 5 px or 5 ppt
+	bindsym Up resize shrink height 5 px or 5 ppt
+	bindsym Right resize grow width 5 px or 5 ppt
+	# back to normal: Enter or Escape or $mod+r
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym $mod+r mode "default"
+}
+# Modify gaps on the fly
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+	bindsym o      mode "$mode_gaps_outer"
+	bindsym i      mode "$mode_gaps_inner"
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+	bindsym plus  gaps inner current plus 5
+	bindsym minus gaps inner current minus 5
+	bindsym 0     gaps inner current set 0
+
+	bindsym Shift+plus  gaps inner all plus 5
+	bindsym Shift+minus gaps inner all minus 5
+	bindsym Shift+0     gaps inner all set 0
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+	bindsym plus  gaps outer current plus 5
+	bindsym minus gaps outer current minus 5
+	bindsym 0     gaps outer current set 0
+
+	bindsym Shift+plus  gaps outer all plus 5
+	bindsym Shift+minus gaps outer all minus 5
+	bindsym Shift+0     gaps outer all set 0
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+# Logout, sleep...
+
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Pause mode "$mode_system"
+
+# Special Winwows Mode
+#for_window [class="Thunar"] floating enable
+
+# Aesthetic Settings 
+smart_borders on
+smart_gaps on
+for_window [class=".*"] border pixel $border_width
+gaps inner $gaps_width
+
+# Color Containers
+# Type                      border     background      text     indicator     child_border
+client.urgent              #383a3b      #383a3b      #ee0000     $red           $red
+client.focused             #315858      #315858      #111111     $yellow        $white
+client.unfocused           #2c2e2f      #2c2e2f      #315858     $black         $black
+client.focused_inactive    #2c2e2f      #2c2e2f      #2c2e2f     $black         $black
+
+# Bar style 
+bar {
+	#position top 
+	status_command	i3status #i3blocks
+	i3bar_command	i3bar
+	colors{
+		separator $white
+	}
+	#i3bar_command	i3bar -t
+	
+	position bottom
+    mode dock
+    colors {
+        statusline $white
+		background $transparent
+
+        # Type                     border     background    text
+        focused_workspace         $dark_grey      $red		  $white
+        active_workspace          $dark_grey      $dark_grey    $red
+        inactive_workspace        $dark_grey      $dark_grey    $grey
+        urgent_workspace          $dark_grey      $dark_grey    $white
+    }
+
+}
+

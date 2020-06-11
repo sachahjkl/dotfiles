@@ -1,0 +1,91 @@
+#!/bin/sh
+
+# Use neovim for vim if present.
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
+
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	mkd="mkdir -pv" \
+	yt="youtube-dl --add-metadata -i" \
+	yta="yt -x -f bestaudio/best" \
+	ffmpeg="ffmpeg -hide_banner"
+
+# Colorize commands when possible.
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	tmux="tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi"
+
+# Default to human readable figures
+alias df='df -h'
+alias du='du -h'
+
+# ls shorthands
+alias \
+	ll='ls -lh' \
+	l='ls -lhA' \
+	la='ls -a' \
+	lla='ls -hla'
+
+# if 'lsd' command is installed, replace ls with it
+if command -v lsd 1&> /dev/null  ;then
+	alias ls='lsd $LS_OPTIONS'
+fi
+
+# Shorter Usual Commands
+alias \
+	dot="cd $DOT"
+	c='clear' \
+	h='history' \
+	f="$FILE" \
+	e="$EDITOR" \
+	v="$EDITOR" \
+	scrot="scrot '%Y-%m-%d-%h-%m-%s_\$wx\$h.png' -e 'mv \$f ~/img/scrot/'" \
+
+# Let's go back !
+alias \
+	..="cd .." \
+	...="cd ../.." \
+
+
+# Pacman
+alias pacman="sudo pacman"
+alias p='sudo pacman'
+
+# Aptitude
+alias \
+	apti="sudo apt install" \
+	apts="sudo apt search" \
+	aptupg="sudo apt upgrade" \
+	aptupd="sudo apt update" \
+	aptrem="sudo apt remove" \
+	aptclean="sudo apt autoremove" \
+	aptfull="sudo apt full-upgrade"
+
+# Directories
+alias \
+	home='cd ~' \
+	root='cd /' \
+	sconf='vim ~/.ssh/config'
+
+#Git
+alias g='git'
+
+# Shortcuts to vimrc and bashrc
+alias \
+	profile='vim ~/.profile' \
+	loadzsh='source ~/.config/zsh/.zshrc' \
+	loadaliases='source ~/.config/aliasrc' \
+	loadprofile='source ~/.profile' \
+	xinitrc="vim ~/.xinitrc" \
+	xres="vim ~/.Xresources"
+
+# Sugar
+set aliascache = ${XDG_CACHE_HOME:-$HOME/.cache}
+alias n="neofetch"
+#alias n="bonsai -n -L 20 -g 35,20 > "$aliascache/my_bonsai_art.txt" && neofetch --ascii "$aliascache/my_bonsai_art.txt" --ascii_colors 11 3 10 2 0"

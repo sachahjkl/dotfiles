@@ -1,0 +1,35 @@
+#!/bin/bash
+color=false
+
+usage() {
+        cat <<HELP_USAGE
+Usage $0 [-c]
+
+-c      Adds lolcat colors to the cow
+
+HELP_USAGE
+}
+
+while getopts ":ch" options; do
+    case "$options" in
+        c)
+            color=true
+            ;;
+        h)
+            usage
+            exit 1
+            ;;
+       ?)
+            >&2 echo "Unkown option."
+            usage
+            exit 1
+            ;;
+    esac
+done
+
+#echo "$color"; exit 1
+if $color ;then
+    clear && fortune|cowsay|lolcat && while sleep 15;do clear && fortune|cowsay|lolcat;done
+else
+    clear && fortune|cowsay && while sleep 15;do clear && fortune|cowsay;done
+fi

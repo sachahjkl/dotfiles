@@ -1,0 +1,30 @@
+#!/bin/sh
+lock() {
+    i3lock_bg
+}
+
+case "$1" in
+    lock)
+        lock
+        ;;
+    logout)
+        sway-msg exit
+        ;;
+    suspend)
+        lock && systemctl suspend
+        ;;
+    hibernate)
+        lock && systemctl hibernate
+        ;;
+    reboot)
+        sudo systemctl reboot
+        ;;
+    shutdown)
+        sudo systemctl poweroff
+        ;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        exit 2
+esac
+
+exit 0
