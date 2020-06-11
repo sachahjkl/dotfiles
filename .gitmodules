@@ -1,3 +1,6 @@
 [submodule ".config/mpv/scripts/mpvSockets"]
 	path = .config/mpv/scripts/mpvSockets
 	url = https://github.com/wis/mpvSockets
+[submodule ".config/ohmyzsh"]
+	path = .config/ohmyzsh
+	url = https://github.com/ohmyzsh/ohmyzsh.git
