@@ -5,6 +5,7 @@
 
 mpd &
 remaps &
+xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/Xresources &
 
 setxkbmap -layout fr &
 nitrogen --restore
@@ -14,7 +15,7 @@ blueman-applet &
 mpd ~/.config/mpd/mpd.conf &
 laptop_mode &
 cbatticon &
-psensor &
+# psensor &
 orage &
 xss-lock --transfer-sleep-lock -- i3lock -f -m -k -B=10 --indicator --datecolor=FFFFFFFF --timecolor=FFFFFFFF &
 
