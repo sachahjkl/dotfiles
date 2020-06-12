@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-source "${XDG_CONFIG_HOME:-HOME/.config}/zsh/zshdefaults"
 # Path to your oh-my-zsh installation.
 export ZSH="${XDG_CONFIG_HOME:-HOME/.config}/ohmyzsh"
 
@@ -68,7 +67,7 @@ ZSH_THEME="minimal"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast archlinux git-prompt systemadmin)
+plugins=(gitfast archlinux git-prompt systemadmin zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,3 +96,4 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+source "${XDG_CONFIG_HOME:-HOME/.config}/zsh/zshdefaults"
