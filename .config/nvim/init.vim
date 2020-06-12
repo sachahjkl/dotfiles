@@ -23,6 +23,7 @@ set softtabstop=4
 set noerrorbells
 set smartindent
 set smarttab
+set expandtab
 set rnu nu
 set nowrap
 set noswapfile
