@@ -32,7 +32,7 @@ set undofile
 set incsearch
 set smartcase
 
-set colorcolumn=80
+set colorcolumn=81
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin(stdpath('data') . '/plugged')
