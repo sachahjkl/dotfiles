@@ -88,15 +88,15 @@ bindsym $mod+b [instance="math"] scratchpad show ;[instance="math"] move positio
 bindsym Control+Shift+Escape exec --no-startup-id ksysguard
 
 # Special Windows
-for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize 625 400
-for_window [instance="dropdown"] move scratchpad
 exec --no-startup-id $term --class dropdown
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] resize set 625 400
+for_window [instance="dropdown"] move scratchpad
 
-for_window [instance="math"] floating enable
-for_window [instance="math"] resize 625 400
-for_window [instance="math"] move scratchpad
 exec --no-startup-id $term --class math -e bc
+for_window [instance="math"] floating enable
+for_window [instance="math"] resize set 625 400
+for_window [instance="math"] move scratchpad
 
 for_window [window_role="About"] floating enable
 for_window [instance="floating"] floating enable
