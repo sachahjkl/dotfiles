@@ -5,7 +5,7 @@
 set $mod Mod4
 set $i3lock i3lock -f -m -k -B=10 --indicator --datecolor=FFFFFFFF --timecolor=FFFFFFFF
 set $i3lock_fancy i3lock-fancy -p  -t 'Type password to unlock'
-set $font monospace 12
+set $font monospace 10
 set $border_width 5
 set $gaps_width 10
 set $term alacritty
@@ -73,8 +73,9 @@ bindsym $mod+w layout tabbed
 bindsym $mod+y layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec --no-startup-id rofi -show combi -show-icons
+bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+Shift+d exec --no-startup-id rofi -show combi -show-icons
+# bindsym $mod+d exec --no-startup-id rofi -show combi -show-icons
 
 # Allows to open rofi just by pressing the left super key
 #bindcode --release 133 exec --no-startup-id rofi -show combi -show-icons -kb-cancel Super_L
