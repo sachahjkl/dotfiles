@@ -91,12 +91,12 @@ bindsym Control+Shift+Escape exec --no-startup-id ksysguard
 for_window [instance="dropdown"] floating enable
 for_window [instance="dropdown"] resize 625 400
 for_window [instance="dropdown"] move scratchpad
-exec --no-startup-id $term -n dropdown
+exec --no-startup-id $term --class dropdown
 
 for_window [instance="math"] floating enable
 for_window [instance="math"] resize 625 400
 for_window [instance="math"] move scratchpad
-exec --no-startup-id $term -n math -e bc
+exec --no-startup-id $term --class math -e bc
 
 for_window [window_role="About"] floating enable
 for_window [instance="floating"] floating enable
