@@ -60,15 +60,11 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 call plug#end()
 " Function for mapping everywhere
 function! MapBoth(keys, rhs)
-    execute 'nmap' a:keys a:rhs
-    execute 'imap' a:keys '<esc>' . a:rhs . 'a'
+	execute 'nmap' a:keys a:rhs
+	execute 'imap' a:keys '<esc>' . a:rhs . 'a'
 endfunction
 
-" Fix for windows cmd weird colors
-if has('win32')
-    set termguicolors
-endif
-
+set termguicolors
 colorscheme codedark
 set background=dark
 
