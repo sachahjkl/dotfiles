@@ -1,8 +1,8 @@
-"       _
-"__   _(_)_ __ ___  _ __ ___
-"\ \ / / | '_ ` _ \| '__/ __|
-" \ V /| | | | | | | | | (__
-"  \_/ |_|_| |_| |_|_|  \___|
+" _       _ _         _
+"(_)_ __ (_) |___   _(_)_ __ ___
+"| | '_ \| | __\ \ / / | '_ ` _ \
+"| | | | | | |_ \ V /| | | | | | |
+"|_|_| |_|_|\__(_)_/ |_|_| |_| |_|
 "
 
 let mapleader = ' '
@@ -131,4 +131,5 @@ autocmd FileType markdown normal zR
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 1/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 1/3)<CR>
 
-nnoremap <Leader><F3> :edit! $XDG_CONFIG_HOME/nvim/init.vim<CR>
+nnoremap <Leader><F3> :execute ':edit! ' . stdpath("config") . '/init.vim'<CR>
+" nnoremap <Leader><F3> :edit! $XDG_CONFIG_HOME/nvim/init.vim<CR>
