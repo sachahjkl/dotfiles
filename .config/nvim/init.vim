@@ -7,10 +7,14 @@
 
 let mapleader = ' '
 
-if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
+if ! filereadable(stdpath('config') . '/autoload/plug.vim')
 	echo "Downloading junegunn/vim-plug to manage plugins..."
-	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
-	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
+	if has('win32')
+		silent execute '!mkdir ' . stdpath('config') . '\autoload'
+	else
+		silent execute '!mkdir -p ' . stdpath('config') . '/autoload'
+	endif
+	silent execute '!curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ' . stdpath('config') . '/autoload/plug.vim'
 	autocmd VimEnter * PlugInstall
 endif
 
@@ -28,8 +32,6 @@ set rnu nu
 set nowrap
 set noswapfile
 set nobackup
-let &undodir = stdpath('data') . '/undodir'
-set undofile
 set incsearch
 set smartcase
 
@@ -132,4 +134,3 @@ nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 1/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 1/3)<CR>
 
 nnoremap <Leader><F3> :execute ':edit! ' . stdpath("config") . '/init.vim'<CR>
-" nnoremap <Leader><F3> :edit! $XDG_CONFIG_HOME/nvim/init.vim<CR>
