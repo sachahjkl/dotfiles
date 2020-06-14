@@ -3,8 +3,8 @@
 
 # Variables Definitions
 set $mod Mod4
-set $i3lock i3lock -f -m -k -B=10 --indicator --datecolor=FFFFFFFF --timecolor=FFFFFFFF
-set $i3lock_fancy i3lock-fancy -p  -t 'Type password to unlock'
+
+set $i3lock i3lock -f -k -B=10 --indicator --datecolor=FFFFFFFF --timecolor=FFFFFFFF
 set $font sans 10
 set $border_width 5
 set $gaps_width 10

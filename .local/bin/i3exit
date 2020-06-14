@@ -1,6 +1,6 @@
 #!/bin/sh
 lock() {
-    $SCRIPTS/i3lock_bg
+    i3lock -f -k -B=10 --indicator --datecolor=FFFFFFFF --timecolor=FFFFFFF
 }
 
 case "$1" in
