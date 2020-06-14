@@ -30,6 +30,8 @@ set smarttab
 set expandtab
 set rnu nu
 set nowrap
+let &undodir=stdpath('data') . '/undo'
+set undofile
 set noswapfile
 set nobackup
 set incsearch
