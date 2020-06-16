@@ -197,12 +197,12 @@ mode "$mode_gaps_outer" {
 # Logout, sleep...
 
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym l exec --no-startup-id i3xfce-exit lock, mode "default"
+    bindsym e exec --no-startup-id i3xfce-exit logout, mode "default"
+    bindsym s exec --no-startup-id i3xfce-exit suspend, mode "default"
+    bindsym h exec --no-startup-id i3xfce-exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3xfce-exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3xfce-exit shutdown, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -245,7 +245,7 @@ bar {
 
     # Type                     border     background    text
     focused_workspace         $dark_grey      $red          $white
-    active_workspace          $dark_grey      $dark_grey    $red
+    active_workspace          $dark_grey      $dark_grey    $white
     inactive_workspace        $dark_grey      $dark_grey    $grey
     urgent_workspace          $dark_grey      $dark_grey    $white
     }
