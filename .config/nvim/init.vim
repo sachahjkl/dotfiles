@@ -54,6 +54,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-sleuth'
 "Plug 'ycm-core/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ap/vim-css-color'
@@ -74,6 +75,7 @@ colorscheme codedark
 set background=dark
 
 let g:airline#extension#tabline#enabled = 1
+let g:airline#extensions#coc#enabled = 1
 
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
 autocmd BufWritePre * %s/\s\+$//e
