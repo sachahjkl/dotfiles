@@ -28,13 +28,12 @@ alias du='du -h'
 # ls shorthands
 alias \
 	ll='ls -lh' \
-	l='ls -lhA' \
-	la='ls -a' \
-	lla='ls -hla'
+	l='ls -lha' \
+	la='ls -a'
 
 # if 'exa' command is installed, replace ls with it
 if command -v exa 1&> /dev/null  ;then
-	alias ls=exa
+	alias ls="exa --icons"
 fi
 
 # Shorter Usual Commands
