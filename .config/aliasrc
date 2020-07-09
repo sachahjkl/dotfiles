@@ -32,9 +32,9 @@ alias \
 	la='ls -a' \
 	lla='ls -hla'
 
-# if 'lsd' command is installed, replace ls with it
-if command -v lsd 1&> /dev/null  ;then
-	alias ls='lsd $LS_OPTIONS'
+# if 'exa' command is installed, replace ls with it
+if command -v exa 1&> /dev/null  ;then
+	alias ls=exa
 fi
 
 # Shorter Usual Commands
