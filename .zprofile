@@ -15,7 +15,7 @@ export BROWSER="firefox"
 export READER="zathura"
 export TERMINAL="alacritty"
 export FILE="thunar"
-export DOT="$HOME/code/dotfiles"
+export DOT="$HOME/Code/dotfiles"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
