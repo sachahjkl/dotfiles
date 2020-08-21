@@ -1,5 +1,13 @@
 #!/bin/sh
 
+# Useful software :
+# - laptop_mode -> enable .service
+# - i3lock-fancy & i3lock
+# - nmtui
+# - avahi-daemon -> enable .service
+# - trayer
+
+
 # This file runs when a DM logs you into a graphical session.
 # If you use startx/xinit like a Chad, this file will also be sourced.
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
@@ -14,11 +22,11 @@ nm-applet &
 blueman-applet &
 pasystray &
 xfce4-power-manager &
+${XDG_DATA_HOME:-$HOME/.local/share}/tresorit/tresorit --hidden &
 
 mpd ~/.config/mpd/mpd.conf &
-laptop_mode &
-xset s 600
-xss-lock "${XDG_DATA_DIR:-$HOME/.local}"/bin/i3lock_custom
+xset s 600 &
+xss-lock "${XDG_DATA_DIR:-$HOME/.local}"/bin/i3lock_custom &
 
 dunst &
 unclutter &
