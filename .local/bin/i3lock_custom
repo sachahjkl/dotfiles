@@ -1,0 +1,2 @@
+#!/bin/sh
+i3lock -f -k -B=10 --indicator --datecolor=FFFFFFFF --timecolor=FFFFFFFF
