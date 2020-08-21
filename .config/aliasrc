@@ -33,7 +33,7 @@ alias \
 
 # if 'exa' command is installed, replace ls with it
 if command -v exa 1&> /dev/null  ;then
-	alias ls="exa --icons"
+	alias ls="exa --icons --group-directories-first --color=auto"
 fi
 
 # Shorter Usual Commands
