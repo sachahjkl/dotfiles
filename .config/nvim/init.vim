@@ -137,4 +137,4 @@ autocmd FileType markdown normal zR
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 1/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 1/3)<CR>
 
-nnoremap <Leader><F3> :execute ':edit! ' . stdpath("config") . '/init.vim'<CR>
+nnoremap <Leader><F3> :execute ':vsp! ' . stdpath("config") . '/init.vim'<CR>
