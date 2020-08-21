@@ -4,4 +4,4 @@ mkdir -p "$HOME"/{Code/repos,Desktop,Documents,Downloads,Games,Pictures,Public,T
 touch "${XDG_CACHE_DIR:-$HOME/.cache}"/zsh/history
 git submodule update --init --recursive
 cp -r ./.* $HOME
-rm -rf $HOME/{.gitmodules,.git, deploy.sh}
+rm -rf $HOME/{.gitmodules,.git,deploy.sh}
