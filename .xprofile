@@ -12,12 +12,13 @@ nitrogen --restore
 picom -b
 nm-applet &
 blueman-applet &
+pasystray &
+xfce4-power-manager &
+
 mpd ~/.config/mpd/mpd.conf &
 laptop_mode &
-cbatticon &
-xss-lock --transfer-sleep-lock -- i3lock -f -m -k -B=10 --indicator --datecolor=FFFFFFFF --timecolor=FFFFFFFF &
+xset s 600
+xss-lock "${XDG_DATA_DIR:-$HOME/.local}"/bin/i3lock_custom
 
 dunst &
-pasystray &
-xset r rate 300 50 &
 unclutter &
