@@ -68,14 +68,15 @@ bindsym $mod+b split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+Shift+w layout tabbed
 bindsym $mod+Shift+s layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
-bindsym $mod+Shift+d exec --no-startup-id dmenu_run
+bindsym $mod+Shift+d exec --no-startup-id dmenu_run -c -bw 4 -l 25 -i
 bindsym $mod+comma exec --no-startup-id dmenuunicode
 bindsym $mod+p exec --no-startup-id bitwarden-dmenu --dmenu-args='-i' --clear-clipboard 30 --session-timeout 100 --sync-vault-after 3600 --on-error 'xargs notify-send --urgency=low'
+bindsym $mod+w exec --no-startup-id firefox
 
 # Allows to open rofi just by pressing the left super key
 bindsym $mod+Shift+q focus parent
