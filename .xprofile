@@ -4,7 +4,6 @@
 # If you use startx/xinit like a Chad, this file will also be sourced.
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
-mpd &
 remaps &
 xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/Xresources &
 
@@ -16,8 +15,6 @@ blueman-applet &
 mpd ~/.config/mpd/mpd.conf &
 laptop_mode &
 cbatticon &
-# psensor &
-orage &
 xss-lock --transfer-sleep-lock -- i3lock -f -m -k -B=10 --indicator --datecolor=FFFFFFFF --timecolor=FFFFFFFF &
 
 dunst &

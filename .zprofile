@@ -39,7 +39,9 @@ export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 export UNISON="${XDG_DATA_HOME:-$HOME/.local/share}/unison"
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
-export ICEAUTHORITY="${XDG_CACHE_HOME:-$HOME/.local/share}"/ICEauthority
+export ICEAUTHORITY="${XDG_CACHE_HOME:-$HOME/.local/share}/ICEauthority"
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="${XDG_CONFIG_HOME:-$HOME/.config}/java"
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
 
 # Other program settings:
 export DICS="/usr/share/stardict/dic/"

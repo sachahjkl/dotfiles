@@ -75,6 +75,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 bindsym $mod+comma exec --no-startup-id dmenuunicode
+bindsym $mod+p exec --no-startup-id bitwarden-dmenu --dmenu-args='-i' --clear-clipboard 30 --session-timeout 100 --sync-vault-after 3600 --on-error 'xargs notify-send --urgency=low'
 
 # Allows to open rofi just by pressing the left super key
 bindsym $mod+Shift+q focus parent
