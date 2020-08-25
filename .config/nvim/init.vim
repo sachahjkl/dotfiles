@@ -70,7 +70,7 @@ function! MapBoth(keys, rhs)
 	execute 'imap' a:keys '<esc>' . a:rhs . 'a'
 endfunction
 
-set termguicolors
+" set termguicolors
 colorscheme codedark
 set background=dark
 
@@ -114,7 +114,6 @@ set wildmode=longest,list,full
 
 " Goyo & Limelight mode enter
 map <Leader>z :Goyo<CR>
-map <Leader>l :Limelight!!<CR>
 
 " Enter paste mode
 "nmap <F2> :set paste!<CR>
@@ -122,10 +121,14 @@ map <Leader>l :Limelight!!<CR>
 call MapBoth('<F2>', ':set paste!<CR>')
 
 " Shortcutting split navigation, saving a keypress:
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+map <Leader>h <C-w>h
+map <Leader>j <C-w>j
+map <Leader>k <C-w>k
+map <Leader>l <C-w>l
+
+" Shortcutting tab navigation, saving a keypress:
+map <C-j> :tabprev<CR>
+map <C-k> :tabnext<CR>
 
 " Markdown & MD Preview
 nmap <Leader>p <Plug>MarkdownPreviewToggle
@@ -137,4 +140,4 @@ autocmd FileType markdown normal zR
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 1/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 1/3)<CR>
 
-nnoremap <Leader><F3> :execute ':vsp! ' . stdpath("config") . '/init.vim'<CR>
+nnoremap <Leader><F3> :execute ':tabedit! ' . stdpath("config") . '/init.vim'<CR>
