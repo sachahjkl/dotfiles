@@ -130,6 +130,9 @@ map <Leader>l <C-w>l
 map <C-j> :tabprev<CR>
 map <C-k> :tabnext<CR>
 
+" Open terminal/shell in tab
+map <Leader>t :tab term<CR>
+
 " Markdown & MD Preview
 nmap <Leader>p <Plug>MarkdownPreviewToggle
 autocmd FileType markdown let b:sleuth_automatic=0
