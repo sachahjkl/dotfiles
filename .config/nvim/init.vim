@@ -121,17 +121,18 @@ map <Leader>z :Goyo<CR>
 call MapBoth('<F2>', ':set paste!<CR>')
 
 " Shortcutting split navigation, saving a keypress:
-map <Leader>h <C-w>h
-map <Leader>j <C-w>j
-map <Leader>k <C-w>k
-map <Leader>l <C-w>l
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>k <C-w>k
+nnoremap <Leader>l <C-w>l
 
 " Shortcutting tab navigation, saving a keypress:
-map <C-j> :tabprev<CR>
-map <C-k> :tabnext<CR>
+nnoremap <C-j> :tabprev<CR>
+nnoremap <C-k> :tabnext<CR>
 
 " Open terminal/shell in tab
-map <Leader>t :tab term<CR>
+nnoremap <Leader>t :tab term<CR>
+tnoremap <Esc> <C-\><C-n>
 
 " Markdown & MD Preview
 nmap <Leader>p <Plug>MarkdownPreviewToggle
