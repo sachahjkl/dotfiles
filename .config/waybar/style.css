@@ -1,0 +1,115 @@
+window#waybar {
+    border: none;
+    border-radius: 0;
+    font-family: sans;
+    font-size: 16px;
+    box-shadow: none;
+    text-shadow: none;
+    transition-duration: 0s;
+    color: rgba(217, 216, 216, 1);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+window#waybar.solo {
+    background: rgb(35, 31, 32);
+}
+
+#workspaces {
+    margin: 0 5px;
+}
+
+#workspaces button {
+    padding: 0 2px;
+    color: rgba(217, 216, 216, 0.4);
+    border-radius: 0px;
+}
+
+#workspaces button.visible {
+    color: rgba(217, 216, 216, 1);
+}
+
+#workspaces button.focused {
+    border: 3px solid rgba(0, 0, 0, .5);
+    background-color: rgba(0,0,0,.3);
+}
+
+#workspaces button.urgent {
+    background-color: #943432;
+    color: white;
+}
+
+#workspaces button:hover {
+    box-shadow: inherit;
+    border-color: #d1be8b;
+    color: #888888;
+}
+
+/* Repeat style here to ensure properties are overwritten as there's no !important and button:hover above resets the colour */
+
+#workspaces button.focused {
+    color: white;
+}
+
+#pulseaudio {
+    /* font-size: 26px; */
+}
+
+#custom-cpu_speed {
+    min-width: 82px;
+}
+
+#tray,
+#mode,
+#battery,
+#temperature,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#idle_inhibitor,
+#backlight,
+#custom-storage,
+#custom-cpu_speed,
+#custom-powermenu,
+#custom-spotify,
+#custom-weather,
+#custom-mail,
+#custom-media,
+#clock {
+    margin: 0px 5px;
+    padding: 0 5px;
+    background-color: rgba(0,0,0,.5)
+    /* border-top: 3px solid rgba(217, 216, 216, 0.5); */
+}
+
+/* #clock {
+    margin:     0px 16px 0px 10px;
+    min-width:  140px;
+} */
+
+#battery.warning {
+    color: rgba(255, 210, 4, 1);
+}
+
+#battery.critical {
+    color: rgba(238, 46, 36, 1);
+}
+
+#battery.charging {
+    color: rgba(217, 216, 216, 1);
+}
+
+#custom-storage.warning {
+    color: rgba(255, 210, 4, 1);
+}
+
+#custom-storage.critical {
+    color: rgba(238, 46, 36, 1);
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
