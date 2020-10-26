@@ -14,7 +14,7 @@ export TERMINAL="st"
 export BROWSER="firefox"
 export READER="zathura"
 export TERMINAL="alacritty"
-export FILE="thunar"
+export FILE="pcmanfm"
 export DOT="$HOME/Code/dotfiles"
 
 # ~/ Clean-up:
@@ -42,7 +42,6 @@ export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
 export ICEAUTHORITY="${XDG_CACHE_HOME:-$HOME/.local/share}/ICEauthority"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="${XDG_CONFIG_HOME:-$HOME/.config}/java"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
-export MOZ_ENABLE_WAYLAND=1
 
 # Other program settings:
 export DICS="/usr/share/stardict/dic/"
@@ -57,10 +56,16 @@ export LESS_TERMCAP_se="$(printf '%b' '[0m')"
 export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
 export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
-export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
-export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
-export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
+# export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
+# export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
+
+# Wayland
+export QT_QPA_PLATFORMTHEME="wayland"
+export XDG_SESSION_TYPE="wayland"
+export CLUTTER_BACKEND="wayland"
+export SDL_VIDEODRIVER="wayland"
+export MOZ_ENABLE_WAYLAND=1
 
 # This is the list for lf icons:
 export LF_ICONS="di=📁:\
@@ -126,5 +131,7 @@ ex=🎯:\
 "
 
 [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ] && shortcuts >/dev/null 2>&1 &
-
 sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
+if [ "$(tty)" = "/dev/tty1" ]; then
+        exec sway
+fi
