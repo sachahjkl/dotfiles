@@ -221,9 +221,9 @@ client.focused_inactive    #2c2e2f      #2c2e2f      #2c2e2f     $black         
 # Bar style
 bar {
     position top
-
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
+    swaybar_command waybar
     status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
 
     colors {
@@ -261,4 +261,5 @@ exec_always {
     gsettings set $gnome-schema gtk-theme 'Arc-Dark'
     gsettings set $gnome-schema icon-theme 'Papirus-Dark'
     gsettings set $gnome-schema cursor-theme 'Adwaita'
+    nm-applet --indicator
 }
