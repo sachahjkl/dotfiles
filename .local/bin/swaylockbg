@@ -1,2 +1,0 @@
-#!/bin/sh
-[ ! -f '/tmp/back.png' ] && convert -size 1920x1080 xc:black /tmp/back.png; swaylock -i /tmp/back.png --nofork
