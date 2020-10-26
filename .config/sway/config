@@ -1,60 +1,50 @@
 # Title: sway Config File
 # Author: Sacha Froment
 
-exec NetworkManager
-
 # Variables Definitions
 set $mod Mod4
-set $swaylock $SCRIPTS/swaylock_bg 
-set $i3lock_fancy i3lock-fancy -p -f Fira-Code-Medium -t 'Type password to unlock'
-set $nm_applet nm-applet
-set $font Fira Code Medium 10
+
+set $swaylock swaylock -f -c 000000 -t "Device Locked" -F -e
+set $font sans 12
+# set $term "$TERMINAL"
+set $term "alacritty"
 set $border_width 5
 set $gaps_width 10
-set $term st
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $mode_system System (l) lock 🔒, (e) exit sway 🚪, (s) suspend 💤, (h) hibernate 🐻, (r) reboot 🔃, (Shift+s) shutdown 🖥
 
 # Colors
 # TODO: add colors
-set $black #303030
+set $black #191919
+set $dark_grey #303030
+set $grey #696f89
 set $blue #3475ed
 set $red #ed3437
 set $orange #ed4a34
 set $yellow #edde34
 set $purple #ed34c8
 set $white #ffffff
-#set $transparent #1d2021E0
 set $transparent #000000CC
-
-# Background 
-output "*" bg $HOME/img/wp/birb.png fill
 
 # Font Settings
 font pango: $font
-#font pango:DejaVu Sans Mono #8
-
-# Keyboard Layout
-input * xkb_layout "fr"
-#exec setxkbmap -layout fr
-#exec_always "setxbkmap -model pc105 -layout fr"
-#exec "setxkbmap -option 'grp:alt_shift_toggle'"
 
 # Media Keys
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5 
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5
-bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/img/scrot/' 
+set $refresh_swaystatus killall -SIGUSR1 swaystatus
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_swaystatus
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_swaystatus
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_swaystatus
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_swaystatus
+bindsym XF86MonBrightnessUp exec brightnessctl s 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
+bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $HOME/Pictures/scrot/'
+
 # Navigation Keys
 floating_modifier $mod
 bindsym $mod+e exec thunar
-bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id $term
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -71,38 +61,36 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-bindsym $mod+z split h
+bindsym $mod+b split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+y layout toggle split
+bindsym $mod+Shift+w layout tabbed
+bindsym $mod+Shift+s layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
-bindsym $mod+d exec --no-startup-id rofi -show combi -show-icons
-bindsym $mod+q focus parent
+bindsym $mod+d exec --no-startup-id wofi --show run --show-icons
+bindsym $mod+Shift+d exec --no-startup-id dmenu_run -c -bw 4 -l 25 -i
+bindsym $mod+comma exec --no-startup-id dmenuunicode
+bindsym $mod+p exec --no-startup-id bitwarden-dmenu --dmenu-args='-i' --clear-clipboard 30 --session-timeout 100 --sync-vault-after 3600 --on-error 'xargs notify-send --urgency=low'
+bindsym $mod+w exec --no-startup-id firefox
+
+# Allows to open rofi just by pressing the left super key
+bindsym $mod+Shift+q focus parent
 #bindsym $mod+d focus child
-bindsym $mod+Shift+a kill
+bindsym $mod+q kill
 bindsym $mod+Control+l exec --no-startup-id $swaylock
-bindsym $mod+t [instance="dropdown"] scratchpad show ; [instance="dropdown"] move position center
-bindsym $mod+b [instance="math"] scratchpad show ;[instance="math"] move position center
+bindsym $mod+Shift+t [instance="dropdown"] scratchpad show ; [instance="dropdown"] move position center
+bindsym $mod+Shift+b [instance="math"] scratchpad show ;[instance="math"] move position center
 bindsym Control+Shift+Escape exec --no-startup-id ksysguard
 
-# Special Windows
-for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize 625 400
-for_window [instance="dropdown"] move scratchpad
-exec --no-startup-id $term -n dropdown 
-
-for_window [instance="math"] floating enable
-for_window [instance="math"] resize 625 400
-for_window [instance="math"] move scratchpad
-exec --no-startup-id $term -n math -e bc
-
+for_window [window_role="About"] floating enable
 for_window [instance="floating"] floating enable
 for_window [class="ksysguard"] floating enable
+for_window [class="Volume Control"] floating enable
+for_window [class="Transmission"] floating enable
 
-# Workspace Accessor Variables 
+# Workspace Accessor Variables
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -137,82 +125,82 @@ bindsym $mod+Shift+underscore move container to workspace number $ws8
 bindsym $mod+Shift+ccedilla move container to workspace number $ws9
 bindsym $mod+Shift+agrave move container to workspace number $ws10
 
-# Reload, Exit, etc 
+# Reload, Exit, etc
 bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec --no-startup-id "swaynag -t warning -m 'Confirm Exit' -B 'Yes, exit sway' 'swaymsg exit'"
+bindsym $mod+Shift+r reload
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
 # Various Modes
 bindsym $mod+r mode "resize"
 mode "resize" {
-	bindsym h resize shrink width 5 px or 5 ppt
-	bindsym j resize grow height 5 px or 5 ppt
-	bindsym k resize shrink height 5 px or 5 ppt
-	bindsym l resize grow width 5 px or 5 ppt
-	# same bindings, but for the arrow keys
-	bindsym Left resize shrink width 5 px or 5 ppt
-	bindsym Down resize grow height 5 px or 5 ppt
-	bindsym Up resize shrink height 5 px or 5 ppt
-	bindsym Right resize grow width 5 px or 5 ppt
-	# back to normal: Enter or Escape or $mod+r
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-	bindsym $mod+r mode "default"
+    bindsym h resize shrink width 5 px or 5 ppt
+    bindsym j resize grow height 5 px or 5 ppt
+    bindsym k resize shrink height 5 px or 5 ppt
+    bindsym l resize grow width 5 px or 5 ppt
+# same bindings, but for the arrow keys
+    bindsym Left resize shrink width 5 px or 5 ppt
+    bindsym Down resize grow height 5 px or 5 ppt
+    bindsym Up resize shrink height 5 px or 5 ppt
+    bindsym Right resize grow width 5 px or 5 ppt
+# back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 # Modify gaps on the fly
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
-	bindsym o      mode "$mode_gaps_outer"
-	bindsym i      mode "$mode_gaps_inner"
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
+    bindsym o      mode "$mode_gaps_outer"
+    bindsym i      mode "$mode_gaps_inner"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 mode "$mode_gaps_inner" {
-	bindsym plus  gaps inner current plus 5
-	bindsym minus gaps inner current minus 5
-	bindsym 0     gaps inner current set 0
+    bindsym plus  gaps inner current plus 5
+    bindsym minus gaps inner current minus 5
+    bindsym 0     gaps inner current set 0
 
-	bindsym Shift+plus  gaps inner all plus 5
-	bindsym Shift+minus gaps inner all minus 5
-	bindsym Shift+0     gaps inner all set 0
+    bindsym Shift+plus  gaps inner all plus 5
+    bindsym Shift+minus gaps inner all minus 5
+    bindsym Shift+0     gaps inner all set 0
 
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 mode "$mode_gaps_outer" {
-	bindsym plus  gaps outer current plus 5
-	bindsym minus gaps outer current minus 5
-	bindsym 0     gaps outer current set 0
+    bindsym plus  gaps outer current plus 5
+    bindsym minus gaps outer current minus 5
+    bindsym 0     gaps outer current set 0
 
-	bindsym Shift+plus  gaps outer all plus 5
-	bindsym Shift+minus gaps outer all minus 5
-	bindsym Shift+0     gaps outer all set 0
+    bindsym Shift+plus  gaps outer all plus 5
+    bindsym Shift+minus gaps outer all minus 5
+    bindsym Shift+0     gaps outer all set 0
 
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 # Logout, sleep...
 
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym l exec --no-startup-id swayexit lock, mode "default"
+    bindsym e exec --no-startup-id swayexit logout, mode "default"
+    bindsym s exec --no-startup-id swayexit suspend, mode "default"
+    bindsym h exec --no-startup-id swayexit hibernate, mode "default"
+    bindsym r exec --no-startup-id swayexit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id swayexit shutdown, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Pause mode "$mode_system"
+bindsym $mod+BackSpace mode "$mode_system"
 
 # Special Winwows Mode
-#for_window [class="Thunar"] floating enable
+for_window [class="Thunar"] floating enable
 
-# Aesthetic Settings 
+# Aesthetic Settings
 smart_borders on
 smart_gaps on
 for_window [class=".*"] border pixel $border_width
@@ -221,33 +209,44 @@ gaps inner $gaps_width
 # Color Containers
 # Type                      border     background      text     indicator     child_border
 client.urgent              #383a3b      #383a3b      #ee0000     $red           $red
-client.focused             #315858      #315858      #111111     $yellow        $yellow
+client.focused             #315858      #315858      #111111     $yellow        $white
 client.unfocused           #2c2e2f      #2c2e2f      #315858     $black         $black
 client.focused_inactive    #2c2e2f      #2c2e2f      #2c2e2f     $black         $black
 
-# Bar style 
+# Bar style
 bar {
-	#position top 
-	status_command	i3status #i3blocks
-	swaybar_command	swaybar
-	#colors{
-	#	separator $red
-	#}
-	#i3bar_command	i3bar -t
-	
-	position bottom
-    mode dock
+    position top
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+
     colors {
-        statusline #76c2d6
-        background  $transparent
-
-        # Type                     border     background    text
-        focused_workspace         #191919      #191919    #bf3f34
-        active_workspace          #191919      #191919    #696f89
-        inactive_workspace        #191919      #191919    #696f89
-        urgent_workspace          #191919      #191919    #c7a551
+        statusline #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
     }
+}
 
+# Input
+
+input * {
+    xkb_layout "fr"
+    repeat_rate 50
+    repeat_delay 300
+}
+
+input type:touchpad {
+    tap enabled
 }
 
 
+# Output
+output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+
+# Run
+
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
