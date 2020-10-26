@@ -47,12 +47,8 @@ color: white;
     background-color: #404552;
 }
 
-#entry:nth-child(even):selected{
-    background-color: #5291e2;
-}
-
 #entry:selected {
-    background color: #5291e2!important;
+    background-color: #5291e2;
 }
 
 #text:selected {
