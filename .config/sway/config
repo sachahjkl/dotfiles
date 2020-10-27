@@ -255,6 +255,7 @@ exec_always {
     gsettings set $gnome-schema icon-theme 'Papirus-Dark'
     gsettings set $gnome-schema cursor-theme 'Adwaita'
     gsettings set $gnome-schema font-name 'Sans 12'
+    gsettings set $gnome-schema monospace-font-name 'Monospace 14'
     nm-applet --indicator
     pcmanfm --desktop &
     mkfifo $SWAYSOCK.wob
