@@ -213,24 +213,17 @@ gaps inner $gaps_width
 
 # Color Containers
 # Type                      border     background      text     indicator     child_border
-client.urgent              #383a3b      #383a3b      #ee0000     $red           $red
-client.focused             #315858      #315858      #111111     $yellow        $white
-client.unfocused           #2c2e2f      #2c2e2f      #315858     $black         $black
-client.focused_inactive    #2c2e2f      #2c2e2f      #2c2e2f     $black         $black
+# client.urgent              #383a3b      #383a3b      #ee0000     $red           $red
+# client.focused             #315858      #315858      #111111     $yellow        $white
+# client.unfocused           #2c2e2f      #2c2e2f      #315858     $black         $black
+# client.focused_inactive    #2c2e2f      #2c2e2f      #2c2e2f     $black         $black
 
 # Bar style
 bar {
     position top
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
     swaybar_command waybar
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
 
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
 }
 
 # Input
@@ -247,7 +240,7 @@ input type:touchpad {
 
 
 # Output
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg $HOME/Pictures/birb.png fill
 
 # Run
 
