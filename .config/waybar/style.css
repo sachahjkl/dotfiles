@@ -11,7 +11,7 @@ window#waybar {
 }
 
 window#waybar.solo {
-    background: rgb(35, 31, 32);
+    /* background: rgb(35, 31, 32); */
 }
 
 #workspaces {
@@ -21,27 +21,28 @@ window#waybar.solo {
 #workspaces button {
     padding: 0 2px;
     color: rgba(217, 216, 216, 0.4);
+    border: 3px solid rgba(0,0,0,.0);
     border-radius: 0px;
 }
 
 #workspaces button.visible {
-    color: rgba(217, 216, 216, 1);
+    color: rgba(217, 216, 216, 0.6);
 }
 
 #workspaces button.focused {
-    border: 3px solid rgba(0, 0, 0, .5);
     background-color: rgba(0,0,0,.3);
+    border: 3px solid rgba(0,0,0,.3);
 }
 
 #workspaces button.urgent {
-    background-color: #943432;
+    background-color: #F43432;
+    border: 3px solid #F43432;
     color: white;
 }
 
 #workspaces button:hover {
-    box-shadow: inherit;
-    border-color: #d1be8b;
-    color: #888888;
+    border: 3px solid rgba(0, 0, 0, .3);
+    background-color: rgba(0,0,0,.3);
 }
 
 /* Repeat style here to ensure properties are overwritten as there's no !important and button:hover above resets the colour */
