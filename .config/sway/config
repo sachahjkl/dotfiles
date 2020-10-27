@@ -236,6 +236,13 @@ input type:touchpad {
     tap enabled
 }
 
+input type:pointer {
+    pointer_accel 0
+}
+
+input type:touchpad {
+    pointer_accel 0.2
+}
 
 # Output
 output * bg $HOME/Pictures/birb.png fill
