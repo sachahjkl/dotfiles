@@ -7,7 +7,7 @@ set $mod Mod4
 set $swaylock swaylock -f -c 000000 -t "Device Locked" -F -e
 set $font sans 12
 set $term "$TERMINAL"
-set $border_width 5
+set $border_width 3
 set $gaps_width 5
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -202,21 +202,14 @@ bindsym $mod+Shift+BackSpace exec --no-startup-id \
     | wofi --dmenu | xargs swayexit
 
 # Special Winwows Mode
-for_window [class="Thunar"] floating enable
+# for_window [class="Thunar"] floating enable
 
 # Aesthetic Settings
 smart_borders on
 # smart_gaps on
-for_window [class=".*"] border pixel $border_width
+default_border normal $border_width
 gaps inner $gaps_width
-gaps outer 0
 
-# Color Containers
-# Type                      border     background      text     indicator     child_border
-# client.urgent              #383a3b      #383a3b      #ee0000     $red           $red
-# client.focused             #315858      #315858      #111111     $yellow        $white
-# client.unfocused           #2c2e2f      #2c2e2f      #315858     $black         $black
-# client.focused_inactive    #2c2e2f      #2c2e2f      #2c2e2f     $black         $black
 
 # Bar style
 bar {

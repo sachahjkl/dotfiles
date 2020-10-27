@@ -56,16 +56,21 @@ export LESS_TERMCAP_se="$(printf '%b' '[0m')"
 export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
 export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
-# export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
+export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 # export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
-export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 
 # Wayland
-export QT_QPA_PLATFORMTHEME="wayland"
+export XDG_SESSION_DESKTOP="sway"
+export XDG_CURRENT_DESKTOP="sway"
 export XDG_SESSION_TYPE="wayland"
 export CLUTTER_BACKEND="wayland"
+export QT_QPA_PLATFORMTHEME="wayland"
+export ECORE_EVAS_ENGINE="wayland"
+export ELM_ENGINE="wayland"
 export SDL_VIDEODRIVER="wayland"
-export MOZ_ENABLE_WAYLAND=1
+# export MOZ_ENABLE_WAYLAND=1
+export _JAVA_AWT_WM_NONREPARENTING=1
+export NO_AT_BRIDGE=1
 
 # This is the list for lf icons:
 export LF_ICONS="di=📁:\
@@ -132,6 +137,6 @@ ex=🎯:\
 
 [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ] && shortcuts >/dev/null 2>&1 &
 sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
-if [ "$(tty)" = "/dev/tty1" ]; then
-        exec sway
-fi
+# if [ "$(tty)" = "/dev/tty1" ]; then
+#         exec sway
+# fi
