@@ -229,20 +229,12 @@ input * {
     xkb_layout "fr"
     repeat_rate 50
     repeat_delay 300
-    xkb_numlock enabled
 }
 
 input type:touchpad {
     tap enabled
 }
 
-input type:pointer {
-    pointer_accel 0
-}
-
-input type:touchpad {
-    pointer_accel 0.2
-}
 
 # Output
 output * bg $HOME/Pictures/birb.png fill
@@ -266,5 +258,6 @@ exec_always {
     pcmanfm --desktop
 
     wl-paste -t text --watch clipman store
+    mako &
 
 }
