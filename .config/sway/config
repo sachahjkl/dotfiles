@@ -8,7 +8,7 @@ set $swaylock swaylock -f -c 000000 -t "Device Locked" -F -e
 set $font sans 12
 set $term "$TERMINAL"
 set $border_width 5
-set $gaps_width 10
+set $gaps_width 5
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -206,9 +206,10 @@ for_window [class="Thunar"] floating enable
 
 # Aesthetic Settings
 smart_borders on
-smart_gaps on
+# smart_gaps on
 for_window [class=".*"] border pixel $border_width
 gaps inner $gaps_width
+gaps outer 0
 
 # Color Containers
 # Type                      border     background      text     indicator     child_border
@@ -253,6 +254,7 @@ exec_always {
     gsettings set $gnome-schema gtk-theme 'Arc-Dark'
     gsettings set $gnome-schema icon-theme 'Papirus-Dark'
     gsettings set $gnome-schema cursor-theme 'Adwaita'
+    gsettings set $gnome-schema font-name 'Sans 12'
     nm-applet --indicator
     pcmanfm --desktop &
     mkfifo $SWAYSOCK.wob
