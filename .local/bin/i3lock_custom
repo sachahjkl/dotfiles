@@ -1,3 +1,0 @@
-#!/bin/sh
-# REQUIRES : i3lock, i3lock-color (YAY)
-i3lock -f -k -B=10 --indicator --datecolor=FFFFFFFF --timecolor=FFFFFFFF

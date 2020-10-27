@@ -1,15 +1,15 @@
 #!/bin/sh
-lock() {
-   swaylock -f -c 000000 -t "Device Locked" -F -e
-}
-
 case "$1" in
     lock)
-        lock
+        locker
         ;;
     logout)
-        swaymsg exit
-        ;;
+       case "$XDG_CURRENT_DESKTOP" in
+          sway) swaymsg exit;;
+          i3) i3-msg exit;;
+          *) killall Xorg;;
+       esac
+       ;;
     suspend)
         lock && systemctl suspend
         ;;
@@ -17,10 +17,10 @@ case "$1" in
         lock && systemctl hibernate
         ;;
     reboot)
-        sudo systemctl reboot
+        systemctl reboot
         ;;
     shutdown)
-        sudo systemctl poweroff
+        systemctl poweroff
         ;;
     *)
         echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"

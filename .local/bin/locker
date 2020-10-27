@@ -1,0 +1,12 @@
+#!/bin/sh
+
+session="${XDG_CURRENT_DESKTOP:-$1}"
+
+case "$session" in
+        sway) swaylock -f -c 000000 -t "Device Locked" -F -e \
+                --indicator-radius 100 -l -f;;
+        i3) i3lock -f -k -B=10 --indicator --datecolor=FFFFFFFF --timecolor=FFFFFFF;;
+        *)
+                echo "Usage: $0 {sway|i3}"
+                exit 2
+esac
