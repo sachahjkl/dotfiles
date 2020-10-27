@@ -229,6 +229,7 @@ input * {
     xkb_layout "fr"
     repeat_rate 50
     repeat_delay 300
+    xkb_numlock enabled
 }
 
 input type:touchpad {
