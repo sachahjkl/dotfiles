@@ -34,14 +34,13 @@ font pango: $font
 set $gnome-schema org.gnome.desktop.interface
 
 # Media Keys
-set $refresh_swaystatus killall -SIGUSR1 swaystatus
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_swaystatus
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_swaystatus
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_swaystatus
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_swaystatus
-bindsym XF86MonBrightnessUp exec brightnessctl s 5%+
-bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
-bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $HOME/Pictures/scrot/'
+bindsym XF86AudioRaiseVolume exec pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob
+bindsym XF86AudioLowerVolume exec pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob
+bindsym XF86AudioMute exec pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > $SWAYSOCK.wob ) || pamixer --get-volume > $SWAYSOCK.wob
+bindsym XF86AudioMicMute exec pamixer --default-source -t
+bindsym XF86MonBrightnessUp exec brightnessctl s 5%+ && brightnessctl i | sed '2q;d' | sed 's/.*(\(.*\)%)/\1/' > $SWAYSOCK.wob
+bindsym XF86MonBrightnessDown exec brightnessctl s 5%- && brightnessctl i | sed '2q;d' | sed 's/.*(\(.*\)%)/\1/' > $SWAYSOCK.wob
+# bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $HOME/Pictures/scrot/'
 
 # Navigation Keys
 floating_modifier $mod
@@ -255,4 +254,7 @@ exec_always {
     gsettings set $gnome-schema icon-theme 'Papirus-Dark'
     gsettings set $gnome-schema cursor-theme 'Adwaita'
     nm-applet --indicator
+    pcmanfm --desktop &
+    mkfifo $SWAYSOCK.wob
+    tail -f $SWAYSOCK.wob | wob
 }
