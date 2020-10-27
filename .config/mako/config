@@ -1,0 +1,24 @@
+font=monospace 12
+max-visible=5
+border-size=3
+padding=8
+sort=-priority
+
+
+[urgency=high]
+background-color=#500000
+text-color=#FFFFFF
+border-color=#900000
+default-timeout=10000
+
+[urgency=normal]
+background-color=#083557
+text-color=#FFFFFF
+border-color=#285577
+default-timeout=5000
+
+[urgency=low]
+background-color=#111111
+text-color=#888888
+border-color=#888888
+default-timeout=5000

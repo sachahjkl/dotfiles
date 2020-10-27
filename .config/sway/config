@@ -70,6 +70,9 @@ bindsym $mod+Shift+w layout tabbed
 bindsym $mod+Shift+s layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
+bindsym $mod+m exec --no-startup-id makoctl dismiss
+bindsym $mod+Shift+m exec --no-startup-id makoctl dismiss --all
+bindsym $mod+n exec --no-startup-id makoctl restore
 bindsym $mod+d exec --no-startup-id wofi --show run
 bindsym $mod+comma exec --no-startup-id wofiunicode
 bindsym $mod+semicolon exec --no-startup-id clipman pick -t wofi -T"--prompt=Historique -i"
