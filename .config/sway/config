@@ -89,6 +89,7 @@ bindsym $mod+Shift+t [instance="dropdown"] scratchpad show ; [instance="dropdown
 bindsym $mod+Shift+b [instance="math"] scratchpad show ;[instance="math"] move position center
 bindsym Control+Shift+Escape exec --no-startup-id ksysguard
 
+# Floating Windows
 for_window [window_role="About"] floating enable
 for_window [instance="floating"] floating enable
 for_window [class="ksysguard"] floating enable
@@ -118,6 +119,7 @@ bindsym $mod+egrave workspace number $ws7
 bindsym $mod+underscore workspace number $ws8
 bindsym $mod+ccedilla workspace number $ws9
 bindsym $mod+agrave workspace number $ws10
+
 # move focused container to workspace
 bindsym $mod+Shift+ampersand move container to workspace number $ws1
 bindsym $mod+Shift+eacute move container to workspace number $ws2
@@ -152,6 +154,7 @@ mode "resize" {
     bindsym Escape mode "default"
     bindsym $mod+r mode "default"
 }
+
 # Modify gaps on the fly
 bindsym $mod+Shift+g mode "$mode_gaps"
 
@@ -161,6 +164,7 @@ mode "$mode_gaps" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 mode "$mode_gaps_inner" {
     bindsym plus  gaps inner current plus 5
     bindsym minus gaps inner current minus 5
@@ -173,6 +177,7 @@ mode "$mode_gaps_inner" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 mode "$mode_gaps_outer" {
     bindsym plus  gaps outer current plus 5
     bindsym minus gaps outer current minus 5
@@ -200,27 +205,26 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 bindsym $mod+BackSpace mode "$mode_system"
 bindsym $mod+Shift+BackSpace exec --no-startup-id \
     echo -e "lock\nlogout\nsuspend\nhibernate\nreboot\nshutdown" \
     | wofi --dmenu | xargs $exiter
 
-# Special Winwows Mode
-# for_window [class="Thunar"] floating enable
-
 # Aesthetic Settings
+client.focused             #315858      #315858      #111111     $yellow        $white
+
 smart_borders on
-# smart_gaps on
-default_border normal $border_width
+smart_gaps on
+default_border pixel $border_width
 gaps inner $gaps_width
 
 
 # Bar style
 bar {
-    position top
+    position bottom
     swaybar_command waybar
     # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-
 }
 
 # Input
@@ -231,10 +235,16 @@ input * {
     repeat_delay 300
 }
 
-input type:touchpad {
-    tap enabled
+input type:pointer {
+    pointer_accel 0
 }
 
+
+input type:touchpad {
+    tap enabled
+    pointer_accel 0.6
+    dwt enabled
+}
 
 # Output
 output * bg $HOME/Pictures/birb.png fill
@@ -245,7 +255,6 @@ exec swayidle -w \
          timeout 300 '$locker' \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
          before-sleep '$locker'
-
 
 exec_always {
     gsettings set $gnome-schema gtk-theme 'Arc-Dark'
@@ -259,5 +268,4 @@ exec_always {
 
     wl-paste -t text --watch clipman store
     mako &
-
 }

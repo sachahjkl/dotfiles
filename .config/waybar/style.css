@@ -7,7 +7,7 @@ window#waybar {
     text-shadow: none;
     transition-duration: 0s;
     color: rgba(217, 216, 216, 1);
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.7);
 }
 
 window#waybar.solo {
@@ -30,8 +30,8 @@ window#waybar.solo {
 }
 
 #workspaces button.focused {
-    background-color: rgba(0,0,0,.3);
-    border: 3px solid rgba(0,0,0,.3);
+    background-color: rgba(0,0,0,.8);
+    border: 3px solid rgba(0,0,0,.8);
 }
 
 #workspaces button.urgent {
@@ -41,8 +41,8 @@ window#waybar.solo {
 }
 
 #workspaces button:hover {
-    border: 3px solid rgba(0, 0, 0, .3);
-    background-color: rgba(0,0,0,.3);
+    border: 3px solid rgba(0, 0, 0, .8);
+    background-color: rgba(0,0,0,.8);
 }
 
 /* Repeat style here to ensure properties are overwritten as there's no !important and button:hover above resets the colour */
