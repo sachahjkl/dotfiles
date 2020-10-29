@@ -235,14 +235,13 @@ input * {
     repeat_delay 300
 }
 
-input type:pointer {
+input * {
     pointer_accel 0
 }
 
 
 input type:touchpad {
     tap enabled
-    pointer_accel 0.6
     dwt enabled
 }
 
