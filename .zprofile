@@ -10,11 +10,10 @@ export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':')"
 
 # Default programs:
 export EDITOR="nvim"
-export TERMINAL="st"
+export TERMINAL="alacritty"
 export BROWSER="firefox"
 export READER="zathura"
-export TERMINAL="alacritty"
-export FILE="pcmanfm"
+export FILE="thunar"
 export DOT="$HOME/Code/dotfiles"
 
 # ~/ Clean-up:
