@@ -13,7 +13,7 @@ export EDITOR="nvim"
 export TERMINAL="alacritty"
 export BROWSER="firefox"
 export READER="zathura"
-export FILE="thunar"
+export FILE="pcmanfm"
 export DOT="$HOME/Code/dotfiles"
 
 # ~/ Clean-up:
