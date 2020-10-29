@@ -78,7 +78,7 @@ bindsym $mod+d exec --no-startup-id wofi --show run
 bindsym $mod+comma exec --no-startup-id wofiunicode
 bindsym $mod+semicolon exec --no-startup-id clipman pick -t wofi -T"--prompt=Historique -i"
 bindsym $mod+p exec --no-startup-id bitwarden-dmenu --dmenu-args='-i' --clear-clipboard 30 --session-timeout 100 --sync-vault-after 3600 --on-error 'xargs notify-send --urgency=low'
-bindsym $mod+w exec --no-startup-id firefox
+bindsym $mod+w exec --no-startup-id $BROWSER
 
 # Allows to open rofi just by pressing the left super key
 bindsym $mod+Shift+q focus parent
