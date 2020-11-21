@@ -15,5 +15,6 @@ eval "$(starship init zsh)"
 TRAPUSR1() { rehash }
 # source "$ZSH/zsh_keys_reset"
 
+[ -f "$ZSH_PLUGINS/zsh-completions/zsh-completions.zsh" ] && source "$ZSH_PLUGINS/zsh-completions/zsh-completions.zsh"
 [ -f "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
 [ -f "$ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source "$ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
