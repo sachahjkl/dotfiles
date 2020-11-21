@@ -1,0 +1,5 @@
+show=run
+term=alacritty
+always_parse_args=true
+layer=overlay
+insensitive=true
