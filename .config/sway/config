@@ -74,7 +74,8 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+m exec --no-startup-id makoctl dismiss
 bindsym $mod+Shift+m exec --no-startup-id makoctl dismiss --all
 bindsym $mod+n exec --no-startup-id makoctl restore
-bindsym $mod+d exec --no-startup-id wofi --show run
+bindsym $mod+d exec --no-startup-id wofi -I --show drun
+bindsym $mod+Shift+d exec --no-startup-id wofi --show run
 bindsym $mod+comma exec --no-startup-id wofiunicode
 bindsym $mod+semicolon exec --no-startup-id clipman pick -t wofi -T"--prompt=Historique -i"
 bindsym $mod+p exec --no-startup-id bitwarden-dmenu --dmenu-args='-i' --clear-clipboard 30 --session-timeout 100 --sync-vault-after 3600 --on-error 'xargs notify-send --urgency=low'
