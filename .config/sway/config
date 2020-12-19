@@ -243,6 +243,7 @@ input * {
 input type:touchpad {
     tap enabled
     dwt enabled
+    natural_scroll enabled
 }
 
 # Output
