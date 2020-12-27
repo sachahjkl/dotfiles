@@ -32,7 +32,7 @@ set $transparent #000000CC
 font pango: $font
 
 # GTK Theme
-set $gnome-schema org.gnome.desktop.interface
+set $gnome_schema org.gnome.desktop.interface
 
 # Media Keys
 bindsym XF86AudioRaiseVolume exec pamixer -ui 2 && pamixer --get-volume | xargs mywob
@@ -251,7 +251,7 @@ input type:touchpad {
 }
 
 # Output
-output * bg $HOME/Pictures/birb.png fill scale 1.15
+output * bg $HOME/Pictures/pape.png fill scale 1.15
 
 # Run
 
@@ -261,11 +261,11 @@ exec swayidle -w \
          before-sleep '$locker'
 
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'Arc-Dark'
-    gsettings set $gnome-schema icon-theme 'Papirus-Dark'
-    gsettings set $gnome-schema cursor-theme 'Adwaita'
-    gsettings set $gnome-schema font-name 'Sans 12'
-    gsettings set $gnome-schema monospace-font-name 'Monospace 14'
+    gsettings set $gnome_schema gtk-theme 'Arc-Dark'
+    gsettings set $gnome_schema icon-theme 'Papirus-Dark'
+    gsettings set $gnome_schema cursor-theme 'Adwaita'
+    gsettings set $gnome_schema font-name 'Sans 12'
+    gsettings set $gnome_schema monospace-font-name 'Monospace 14'
 
     nm-applet --indicator
     pcmanfm --desktop
