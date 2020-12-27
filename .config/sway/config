@@ -233,7 +233,8 @@ bar {
 # Input
 
 input * {
-    xkb_layout "fr"
+    xkb_layout fr,us
+    xkb_options grp:win_space_toggle
     repeat_rate 50
     repeat_delay 300
 }
