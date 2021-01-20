@@ -1,5 +1,5 @@
 [global]
-    font = monospace 10
+    font = monospace 12
 
     # allow a small subset of html markup:
     # <b>bold</b>
@@ -96,7 +96,7 @@
 
     # Draw a line of 'separatpr_height' pixel height between two notifications.
     # Set to 0 to disable
-    separator_height = 2
+    separator_height = 0
 
     # padding between text and separator
     padding = 8
@@ -110,7 +110,7 @@
     #  * foreground: use the same color as the foreground
     #  * frame: use the same color as the frame.
     #  * anything else will be interpreted as a X color
-    separator_color = frame
+    separator_color = auto
 
     # print a notification on startup
     # This is mainly for error detection, since dbus (re-)starts dunst
@@ -124,8 +124,7 @@
     browser = /usr/bin/firefox -new-tab
 
 [frame]
-    width = 0
-    color = "#000000"
+    width = 3
 
 [shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key
@@ -148,18 +147,21 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the '#' and following  would be interpreted as a comment.
-    background = "#222222"
+    background = "#111111"
     foreground = "#888888"
+    frame_color = "#888888"
     timeout = 10
 
 [urgency_normal]
-    background = "#285577"
+    background = "#083557"
     foreground = "#ffffff"
+    frame_color = "#285577"
     timeout = 10
 
 [urgency_critical]
-    background = "#900000"
+    background = "#500000"
     foreground = "#ffffff"
+    frame_color = "#900000"
     timeout = 0
 
 
