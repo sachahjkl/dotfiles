@@ -44,6 +44,8 @@ bindsym XF86MonBrightnessDown exec brightnessctl s 5%- && brightnessctl i | sed 
 bindsym Shift+XF86MonBrightnessUp exec brightnessctl s 2%+ && brightnessctl i | sed '2q;d' | sed 's/.*(\(.*\)%)/\1/' | xargs mywob
 bindsym Shift+XF86MonBrightnessDown exec brightnessctl s 2%- && brightnessctl i | sed '2q;d' | sed 's/.*(\(.*\)%)/\1/' | xargs mywob
 bindsym Print exec grimshot save screen
+bindsym Ctrl+Print exec grimshot save area
+bindsym Shift+Ctrl+Print exec grimshot save area
 
 # Navigation Keys
 floating_modifier $mod
@@ -262,7 +264,7 @@ exec swayidle -w \
          before-sleep '$locker'
 
 exec_always {
-    gsettings set $gnome_schema gtk-theme 'Arc-Dark'
+    gsettings set $gnome_schema gtk-theme 'Breeze-Dark'
     gsettings set $gnome_schema icon-theme 'Papirus-Dark'
     gsettings set $gnome_schema cursor-theme 'Adwaita'
     gsettings set $gnome_schema font-name 'Sans 12'
