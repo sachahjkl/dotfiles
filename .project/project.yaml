@@ -1,8 +1,0 @@
-name: "dotfiles"
-description: "My dotfiles."
-topics: []
-homepage: ""
-source:
-  provider: gitlab
-  namespace: "sachahjkl"
-  path: "sachahjkl/dotfiles"
