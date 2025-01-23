@@ -1,0 +1,7 @@
+[Added Associations]
+application/xml=sublime_text.desktop;
+image/png=nomacs.desktop;
+
+[Default Applications]
+application/xml=sublime_text.desktop;
+image/png=nomacs.desktop;
