@@ -405,6 +405,7 @@ yPosition=20
 pinControls=true
 
 [SelectedTags]
+brushes=All
 gamutmasks=All
 gradients=All
 paintoppresets=All
