@@ -10,3 +10,5 @@
 	oops = commit --amend --no-edit
 	lg = log --graph --oneline
 	pl = push --force-with-lease
+[credential]
+	helper = libsecret
