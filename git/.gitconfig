@@ -1,0 +1,12 @@
+[init]
+	defaultBranch = master
+[user]
+	email = sacha@sacha.house
+	name = sachahjkl
+	signingKey = 1EFE264F809A2118
+[commit]
+	gpgSign = true
+[alias]
+	oops = commit --amend --no-edit
+	lg = log --graph --oneline
+	pl = push --force-with-lease

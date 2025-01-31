@@ -17,4 +17,5 @@ stow fontconfig
 stow wayland-hyprland
 stow --adopt desktop-kde
 stow custom-scripts
-stow credentials
+stow git
+stow env
